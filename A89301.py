@@ -188,7 +188,8 @@ class A89301:
     def setSpeedRPM(self, RPM):
         ratedRPM = self.ratedSpeedReg*0.530*60
         demand = (RPM/ratedRPM)*511
-        self.setSpeedDemand(demand)
+        print(demand)
+        self.setSpeedDemand(int(demand))
     def setDirection(self, direction):
         self.writeSubReg(8, direction, 14, 14)
     def readSpeed(self): #return RPM
@@ -198,4 +199,4 @@ class A89301:
     def readCurrent(self): #mA
         return self.readReg(121, readRAM=False)/(self.senseResistorReg/125)
     def readOpState(self):
-        return self.readSubReg(127, 15, 12, 12, readRAM1=False) #this throws an error
+        return self.readSubReg(127, 15, 12, 12, readRAM1=False) #this throws an error for some reason
